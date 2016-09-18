@@ -14,6 +14,7 @@ dirname = "neural_photos"
 
 if(not path.isdir(dirname)):
     os.mkdir(dirname)
+os.chdir(dirname)
 
 minpulse = 55
 maxpulse = 240
@@ -42,7 +43,8 @@ try:
                 pulse = pulseraw if minpulse <= pulseraw <= maxpulse else pulse
             except:
                 pass
-            im.save("{}_{}.jpg".format(pulse, uuid.uuid4().hex))
+            im.save(image, "{}_{}.jpg".format(pulse, uuid.uuid4().hex))
+            print("created img!", image, pulse, pulseraw)
             sleep(5)
         else:
             sleep(0.01)
