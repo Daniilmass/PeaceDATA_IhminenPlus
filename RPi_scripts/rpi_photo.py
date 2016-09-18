@@ -39,8 +39,8 @@ try:
         if mycam.query_image():
             image = mycam.get_image()
             try:
-                pulseraw = float(ardserial.readline())
-                pulse = pulseraw if minpulse <= pulseraw <= maxpulse else pulse
+                pulseraw = float(ardserial.readline())-15
+                pulse = pulseraw if minpulse <= pulseraw <= maxpulse and abs(pulse-pulseraw)<20 else pulse
             except:
                 pass
             im.save(image, "{}_{}.jpg".format(pulse, uuid.uuid4().hex))
